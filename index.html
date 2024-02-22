@@ -41,7 +41,7 @@
         // Variáveis
         var alien;          // Armazenar "alien"
         var teclado;        // Armazenar comandos de teclado
-        var fogo;           // Armazena o turbo do alien
+        var turbo;           // Armazena o turbo do alien
         var plataforma;     // Armazena plataforma
         var moeda;          // Armazena moeda
         var placar;         // Armazena placar
@@ -50,7 +50,7 @@
         function preload() {
             this.load.image('background', 'assets/bg.png');
             this.load.image('player', 'assets/alienigena.png');
-            this.load.image('turbo_alien', 'assets/turbo.png');
+            this.load.image('turbo', 'assets/turbo.png');
             this.load.image('plataforma_tijolo', 'assets/tijolos.png');
             this.load.image('moeda', 'assets/moeda.png');
 
@@ -61,13 +61,13 @@
             this.add.image(larguraJogo/2, alturaJogo/2, 'background');
 
             // Adiciona o turbo do alien
-            fogo = this.add.sprite(0, 0, 'turbo_nave');
-            fogo.setVisible(false);
+            turbo = this.add.sprite(0, 0, 'turbo');
+            turbo.setVisible(false);
 
             // Cria o alien e atribui física a ele
             alien = this.physics.add.sprite(larguraJogo/2, 0, 'player');
-            alien.setCollliderWorldBounds(true);    // Adiconar colisão ao alien
-            alien.body.setSize(20, 40, true);       // Adiciona o tamanho da caixa de colisão
+            alien.setCollideWorldBounds(true);    // Adiconar colisão ao alien
+            alien.body.setSize(120, 100, true);       // Adiciona o tamanho da caixa de colisão
 
             // Criar inputs para alien
             teclado = this.input.keyboard.createCursorKeys();
@@ -78,8 +78,8 @@
 
             // Adiciona moeda
             moeda = this.physics.add.sprite(larguraJogo/2, 0, 'moeda');
-            moeda.setCollliderWorldBounds(true);
-            moeda.setBounce(1);
+            moeda.setCollideWorldBounds(true);
+            moeda.setBounce(0.7);
             this.physics.add.collider(plataforma);
 
             // Adicionando placar 
@@ -92,10 +92,10 @@
                 moeda.setPosition(posicaoMoeda_Y, 100);
                 pontuacao += 1;
                 placar.setText('Moedas:' + pontuacao);
-                moeda.setVisible(false);
+                moeda.setVisible(true);
             });
 
-            
+
 
         }
 
@@ -117,19 +117,19 @@
                 semTurbo();
             }
 
-            // Atualizar a posição do fogo no alien
-            fogo.setPosition(alien.x, alien.y + alien.height/2);
+            // Atualizar a posição do turbo no alien
+            turbo.setPosition(alien.x, alien.y + alien.height/2);
 
 
 
         }
 
         function ativarTurbo() {
-            fogo.setVisible(true);
+            turbo.setVisible(true);
         }
 
         function semTurbo() {
-            fogo.setVisible(false);
+            turbo.setVisible(false);
         }
 
     </script>
