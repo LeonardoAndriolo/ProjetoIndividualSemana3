@@ -87,7 +87,9 @@
                 // Adiciona moedas
                 let moeda = this.physics.add.sprite(Phaser.Math.RND.between(50*i, 650), 0, 'moedas');
                 moeda.setCollideWorldBounds(true);
-                moeda.setBounce(Phaser.Math.Between(0.6, 0.8));
+                moeda.setBounce(Phaser.Math.Between(0.6, 0.8)); // Será?
+                // bounce = Phaser.Math.Between(0.6, 0.8)
+                // console.log(bounce)
 
                 // Adiciona colisão com a plataforma para cada moedas
                 this.physics.add.collider(moeda, plataforma);
@@ -101,7 +103,7 @@
                     placar.setText('moeda:' + pontuacao);
                     moeda.setVisible(true);
                 });
-
+                
 
                 // Adiciona a moedas ao array
                 moeda[i] = moedas;
